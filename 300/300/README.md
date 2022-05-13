@@ -102,6 +102,6 @@ $ docker-compose --file docker-compose.prod.yml --project-name redmine-prod up -
 
 If successful, browse to http://localhost (***note***: 80 is the default port for HTTP, and therefore not required to be added to the hostname) to see the production version of the app.
 
-![137897955-908a2483-66c2-4ab8-a22a-a8a06ca6b325](https://user-images.githubusercontent.com/12828104/139402123-f774a895-d50f-4730-a741-d358a33cf954.png)
+![image](https://user-images.githubusercontent.com/1499433/168271951-a07dc74d-9ed7-4ce9-b56e-205464025cf8.png)
 
 http://localhost
