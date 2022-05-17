@@ -17,6 +17,8 @@ Based on "Install redmine via docker-compose" at https://itblog.webdigg.org/636-
 
 Based on "Dockerizing a React App" at https://mherman.org/blog/dockerizing-a-react-app/
 
+Based on "How to Run PostgreSQL and pgAdmin Using Docker" at https://towardsdatascience.com/how-to-run-postgresql-and-pgadmin-using-docker-3a6a8ae918b5
+
 ## 100 - Introduction
 
 See [README.md](./100/README.md)
