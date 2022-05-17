@@ -14,4 +14,12 @@ It is strongly recommended to change this password at first login to improve def
 
 In some cases of alternative to manual installation (e.g., using one of the third-party Redmine bundles), Setup allows a default administrator user to be defined manually with a different user name and password.
 
+## 200 - Plugins
+
+### 100 - Agile Plugin
+
+See https://www.redmine.org/plugins/redmine_agile
+
+You can install the plugin from within Redmine. 
+
 More to follow ...
