@@ -26,6 +26,9 @@ ENV HTTPS_PROXY="http://${PROXY_USER}:${PROXY_PASSWORD}@${PROXY_FQDN}:${PROXY_PO
 # add app
 # COPY . ./
 
+# root user
+USER root
+
 # expose port
 EXPOSE 80
 
