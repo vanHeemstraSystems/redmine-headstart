@@ -1,0 +1,101 @@
+version: "3.7"
+
+# See https://stackoverflow.com/questions/29261811/use-docker-compose-env-variable-in-dockerbuild-file
+services:
+
+  # webui:
+  #   build:
+  #     context: ./webui
+  #     dockerfile: Dockerfile.dev
+  #     args: # from env_file
+  #       IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+  #       PROXY_USER: ${PROXY_USER}
+  #       PROXY_PASSWORD: ${PROXY_PASSWORD}
+  #       PROXY_FQDN: ${PROXY_FQDN}
+  #       PROXY_PORT: ${PROXY_PORT}
+  #   env_file:
+  #     - .env
+  #   container_name: ${UNIQUE_NAMESPACE}-webui-dev
+  #   security_opt:
+  #     - no-new-privileges:true     
+  #   ports:
+  #     - "8080:3000"
+  #   volumes:
+  #     - ./webui:/app
+  #     - /app/node_modules
+  #   environment:
+  #     - CHOKIDAR_USEPULLING=true
+
+  redmine:
+    build:
+      context: ./redmine
+      dockerfile: Dockerfile.dev
+      args: # from env_file
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+    env_file:
+      - .env
+    container_name: ${UNIQUE_NAMESPACE}-redmine-dev
+    privileged: true
+    security_opt:
+      - no-new-privileges:true
+    restart: always   
+    ports:
+      - "7081:3000"
+    volumes:
+      - redmine-plugins:/usr/src/redmine/plugins
+      - redmine-themes:/usr/src/redmine/public/themes
+      - redmine-data:/usr/src/redmine/files
+    environment:
+       REDMINE_DB_PORT: "5432"
+       REDMINE_DB_POSTGRES: "postgres"
+       REDMINE_DB_USERNAME: "postgres"
+       REDMINE_DB_PASSWORD: "+++++ ASK FOR THE REDMINE_DB_PASSWORD FROM A TRUSTED PARTY +++++"
+       REDMINE_DB_DATABASE: "redmine"
+       REDMINE_SECRET_KEY_BASE: "supersecretkey"
+    depends_on:
+      - postgres
+    networks:
+      - redmine  
+
+  postgres:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile.dev
+      args: # from env_file
+        IMAGE_REPOSITORY: ${IMAGE_REPOSITORY}
+        PROXY_USER: ${PROXY_USER}
+        PROXY_PASSWORD: ${PROXY_PASSWORD}
+        PROXY_FQDN: ${PROXY_FQDN}
+        PROXY_PORT: ${PROXY_PORT}
+    env_file:
+      - .env
+    container_name: ${UNIQUE_NAMESPACE}-postgres-dev
+    privileged: true
+    security_opt:
+      - no-new-privileges:true
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+       - postgres-data:/var/lib/postgresql/data
+    environment:
+       POSTGRES_DB: "redmine"
+       POSTGRES_USER: "postgres"
+       POSTGRES_PASSWORD: "+++++ ASK FOR THE POSTGRES_PASSWORD FROM A TRUSTED PARTY +++++"
+       PGDATA: "/var/lib/postgresql/data/pgdata"
+    networks:
+      - redmine
+
+volumes:
+  postgres-data:
+  redmine-plugins:
+  redmine-themes:
+  redmine-data:
+
+networks:
+  redmine:
+    driver: bridge
