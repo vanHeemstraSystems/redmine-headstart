@@ -19,6 +19,10 @@ Based on "Dockerizing a React App" at https://mherman.org/blog/dockerizing-a-rea
 
 Based on "How to Run PostgreSQL and pgAdmin Using Docker" at https://towardsdatascience.com/how-to-run-postgresql-and-pgadmin-using-docker-3a6a8ae918b5
 
+Based on "Postgres with Docker and Docker compose a step-by-step guide for beginners" at https://geshan.com.np/blog/2021/12/docker-postgres/
+
+Based on "Setting up Redmine with Docker" at https://medium.com/@gurayy/setting-up-redmine-with-docker-be110387ba1c
+
 ## 100 - Introduction
 
 See [README.md](./100/README.md)
