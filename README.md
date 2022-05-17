@@ -23,6 +23,8 @@ Based on "Postgres with Docker and Docker compose a step-by-step guide for begin
 
 Based on "Setting up Redmine with Docker" at https://medium.com/@gurayy/setting-up-redmine-with-docker-be110387ba1c
 
+Based on "Install redmine plug-in using docker container" at https://stackoverflow.com/questions/43424994/install-redmine-plug-in-using-docker-container
+
 ## 100 - Introduction
 
 See [README.md](./100/README.md)
